@@ -8,8 +8,8 @@ public class FirstHomework {
         System.out.println("Apple");}
 
     public static void checkSumSign() {
-        a = 5;
-        b = -9;
+        int a = 5;
+        int b = -9;
         if ((a + b) >= 0) {
             System.out.println("Сумма положительная");
         } else {
