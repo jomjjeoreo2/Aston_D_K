@@ -1,11 +1,28 @@
+import java.util.Arrays;
+
 public class FirstHomework {
     public static void main(String[] args) {
-        Вызов метода1; Вызов метода2; ... Вызов метода14; }
+        printThreeWords();
+        checkSumSign();
+        printColor();
+        compareNumbers();
+        checkSum (5, 100);
+        numType (16);
+        isPositiveOrNot (67);
+        repeatString("String text", 10);
+        isLeapYear (2020);
+        invertArray();
+        fillArray(22);
+        doubleSmallNums();
+        drawDiagonal (4);
+        printArray (4, 9);
+    }
 
     public static void printThreeWords() {
         System.out.println("Orange");
         System.out.println("Banana");
-        System.out.println("Apple");}
+        System.out.println("Apple");
+    }
 
     public static void checkSumSign() {
         int a = 5;
@@ -96,11 +113,11 @@ public class FirstHomework {
         for (int n : numbers) {
             System.out.print(n + " ");
         }
+        System.out.println();
     }
 
-    public static void fillArray() {
+    public static void fillArray(int i) {
         int[] arr = new int[100];
-        int i;
         for (i = 0; i < 100; i++) {
             arr[i] = i + 1;
         }
@@ -112,20 +129,33 @@ public class FirstHomework {
     public static void doubleSmallNums() {
         int[] nums = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
         for (int i = 0; i < nums.length; i++) {
-            int current = nums[i];
-            if (current < 6) {
-                nums[i] = current * 2;
+            if (nums[i] < 6) {
+                nums[i] *= 2;
             }
         }
         System.out.println("Итоговый массив: ");
         for (int n : nums) {
             System.out.print(n + " ");
         }
+        System.out.println();
     }
-
-
-
-
-
-
+    public static void drawDiagonal (int counter) {
+        int [][] table = new int[counter][counter];
+        for (int i = 0; i < counter; i++) {
+            table [i][i] = 1;
+        }
+        for (int r = 0; r < counter; r ++) {
+            for (int c = 0; c < counter; c++) {
+                System.out.print(table[r][c] + " ");
+            }
+            System.out.println();
+        }
+    }
+    public static void printArray (int len, int value) {
+        int [] arr = new int[len];
+        for (int i = 0; i < len; i++) {
+            arr [i] = value;
+        }
+        System.out.println(Arrays.toString(arr));
+    }
 }
