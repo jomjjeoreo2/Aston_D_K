@@ -4,7 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19f30cbc-a69d-4f81-ab39-561c79d2bbe7" name="Changes" comment="1-14" />
+    <list default="true" id="19f30cbc-a69d-4f81-ab39-561c79d2bbe7" name="Changes" comment="тесты апи к Лекции 2.9.">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/example/math/ArithmeticOperations.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/example/math/FactorialCalculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/example/math/NumberComparer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/example/math/TriangleAreaCalculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/api/DeleteMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/api/GetMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/api/PatchMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/api/PostMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/api/PutMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/example/math/testng/ArithmeticOperationsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/example/math/testng/FactorialCalculatorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/example/math/testng/NumberComparerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/example/math/testng/TriangleAreaCalculatorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/DeleteDataTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/GetRequestWoopsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/PatchDataTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/PostFromDataTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/PostRawTextTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/PutDataTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/FirstHomework.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/example/math/ArithmeticOperations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/example/math/FactorialCalculator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/example/math/NumberComparer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/example/math/TriangleAreaCalculator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/example/math/junit5/ArithmeticOperationsTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/example/math/junit5/FactorialCalculatorTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/example/math/junit5/NumberComparerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/example/math/junit5/TriangleAreaCalculatorTest.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +56,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Lesson_1" />
+        <entry key="$PROJECT_DIR$" value="Lesson_8" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,25 +85,139 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.ArrayProcessor.executor": "Run",
     "Application.FirstHomework.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.MainTask.executor": "Run",
+    "Application.MainTask2.executor": "Run",
+    "Application.PhoneDirectory.executor": "Run",
+    "Application.StudentsProcessor.executor": "Run",
+    "JUnit.FactorialCalculatorTest.executor": "Run",
+    "JUnit.NumberComparerTest.executor": "Run",
+    "Maven.Aston_D_K [clean].executor": "Run",
+    "Maven.Aston_D_K [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TestNG.ArithmeticOperationsTest.executor": "Run",
+    "TestNG.DeleteDataTest.executor": "Run",
+    "TestNG.GetRequestWoops.executor": "Run",
+    "TestNG.GetRequestWoopsTest.executor": "Run",
+    "TestNG.MTSReplenishTests.executor": "Run",
+    "TestNG.PatchDataTest.executor": "Run",
+    "TestNG.PostFormDataTest.executor": "Run",
+    "TestNG.PostFromDataTest.checkPostFormData.executor": "Run",
+    "TestNG.PostFromDataTest.executor": "Run",
+    "TestNG.PostRawTextTest (1).executor": "Run",
+    "TestNG.PostRawTextTest.checkPostResponse.executor": "Run",
+    "TestNG.PostRawTextTest.executor": "Run",
+    "TestNG.PostRawTextTest.testPostRawText.executor": "Run",
+    "TestNG.PutDataTest.executor": "Run",
+    "TestNG.ru.example.math.testng.executor": "Run",
+    "git-widget-placeholder": "Lesson__9",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Katana Kanf/IdeaProjects/Aston_D_K/src/main",
     "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="FirstHomework" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="FirstHomework" />
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Katana Kanf\IdeaProjects\Aston_D_K\src\main" />
+    </key>
+  </component>
+  <component name="RunManager" selected="TestNG.MTSReplenishTests">
+    <configuration name="DeleteDataTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Aston_D_K" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.DeleteDataTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GetRequestWoopsTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Aston_D_K" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.GetRequestWoopsTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MTSReplenishTests" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Aston_D_K" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.MTSReplenishTests" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PatchDataTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Aston_D_K" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.PatchDataTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PutDataTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Aston_D_K" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.PutDataTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FirstHomework" />
+        <item itemvalue="TestNG.MTSReplenishTests" />
+        <item itemvalue="TestNG.DeleteDataTest" />
+        <item itemvalue="TestNG.PatchDataTest" />
+        <item itemvalue="TestNG.GetRequestWoopsTest" />
+        <item itemvalue="TestNG.PutDataTest" />
       </list>
     </recent_temporary>
   </component>
@@ -104,12 +254,85 @@
       <option name="project" value="LOCAL" />
       <updated>1780834696377</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="задание к Лекции 2.3.">
+      <option name="closed" value="true" />
+      <created>1781378071761</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1781378071761</updated>
+    </task>
+    <task id="LOCAL-00005" summary="задание к Лекции 2.4">
+      <option name="closed" value="true" />
+      <created>1781448175481</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1781448175481</updated>
+    </task>
+    <task id="LOCAL-00006" summary="задание к Лекции 2.5">
+      <option name="closed" value="true" />
+      <created>1782048403201</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1782048403201</updated>
+    </task>
+    <task id="LOCAL-00007" summary="задание к Лекции 2.6">
+      <option name="closed" value="true" />
+      <created>1782050344123</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1782050344123</updated>
+    </task>
+    <task id="LOCAL-00008" summary="тест и коды к junit5">
+      <option name="closed" value="true" />
+      <created>1782493326403</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1782493326403</updated>
+    </task>
+    <task id="LOCAL-00009" summary="тест и коды к testng">
+      <option name="closed" value="true" />
+      <created>1782555215031</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1782555215031</updated>
+    </task>
+    <task id="LOCAL-00010" summary="тесты апи к Лекции 2.8.">
+      <option name="closed" value="true" />
+      <created>1782658428542</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1782658428542</updated>
+    </task>
+    <task id="LOCAL-00011" summary="тесты апи к Лекции 2.9.">
+      <option name="closed" value="true" />
+      <created>1783259591509</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1783259591509</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1-12" />
     <MESSAGE value="1-14" />
-    <option name="LAST_COMMIT_MESSAGE" value="1-14" />
+    <MESSAGE value="-" />
+    <MESSAGE value="задание к Лекции 2.3." />
+    <MESSAGE value="задание к Лекции 2.4" />
+    <MESSAGE value="задание к Лекции 2.5" />
+    <MESSAGE value="задание к Лекции 2.6" />
+    <MESSAGE value="тест и коды к junit5" />
+    <MESSAGE value="тест и коды к testng" />
+    <MESSAGE value="тесты апи к Лекции 2.8." />
+    <MESSAGE value="тесты апи к Лекции 2.9." />
+    <option name="LAST_COMMIT_MESSAGE" value="тесты апи к Лекции 2.9." />
   </component>
 </project>
