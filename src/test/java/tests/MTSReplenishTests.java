@@ -38,7 +38,7 @@ public class MTSReplenishTests extends BaseTest {
         closeCookies();
 
         page.chooseService("Услуги связи");
-        page.enterPhone("+375297777777");
+        page.enterPhone("297777777");
         page.enterAmount("10");
         page.clickSubmit();
     }
