@@ -4,43 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19f30cbc-a69d-4f81-ab39-561c79d2bbe7" name="Changes" comment="тесты апи к Лекции 2.9.">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/example/math/ArithmeticOperations.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/example/math/FactorialCalculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/example/math/NumberComparer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/example/math/TriangleAreaCalculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/api/DeleteMethod.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/api/GetMethod.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/api/PatchMethod.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/api/PostMethod.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/api/PutMethod.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/example/math/testng/ArithmeticOperationsTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/example/math/testng/FactorialCalculatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/example/math/testng/NumberComparerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/example/math/testng/TriangleAreaCalculatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/DeleteDataTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/GetRequestWoopsTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/PatchDataTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/PostFromDataTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/PostRawTextTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/PutDataTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/FirstHomework.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/example/math/ArithmeticOperations.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/example/math/FactorialCalculator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/example/math/NumberComparer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/example/math/TriangleAreaCalculator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/example/math/junit5/ArithmeticOperationsTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/example/math/junit5/FactorialCalculatorTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/example/math/junit5/NumberComparerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/example/math/junit5/TriangleAreaCalculatorTest.class" beforeDir="false" />
-    </list>
+    <list default="true" id="19f30cbc-a69d-4f81-ab39-561c79d2bbe7" name="Changes" comment="тесты апи к Лекции 2.9." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
