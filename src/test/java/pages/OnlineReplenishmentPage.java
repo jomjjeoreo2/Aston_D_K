@@ -14,12 +14,11 @@ public class OnlineReplenishmentPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
 
-    /* --- Элементы верхнего уровня (твои рабочие) --- */
 
     @FindBy(css = ".pay__wrapper h2")
     private WebElement blockTitle;
 
-    @FindBy(id = "pay") // Обычный HTML-select
+    @FindBy(id = "pay")
     private WebElement serviceSelector;
 
     @FindBy(css = "[id$=phone]")
@@ -40,9 +39,6 @@ public class OnlineReplenishmentPage {
     @FindBy(className = "pay__partners")
     private WebElement partnersSection;
 
-    /* --- Элементы модального окна (добавляю для Req #2) --- */
-
-    // Карточные поля появляются в модальном окне
     @FindBy(id = "card-number")
     private WebElement cardNumberInput;
 
@@ -52,19 +48,18 @@ public class OnlineReplenishmentPage {
     @FindBy(id = "card-cvc")
     private WebElement cvcCodeInput;
 
-    // Кнопка «Оплатить» в модальном окне
+
     @FindBy(xpath = "//button[text()='Оплатить']")
     private WebElement payButtonInModal;
 
-    // Иконки платежных систем в модальном окне
+
     @FindBy(css = ".payment-system-icons img")
     private List<WebElement> paymentSystemIcons;
 
-    /* --- Конструктор --- */
 
     public OnlineReplenishmentPage(WebDriver driver, BaseTest baseTest) {
         this.driver = driver;
-        this.wait = baseTest.getExplicitWait(); // Присваиваем внутри конструктора
+        this.wait = baseTest.getExplicitWait();
         PageFactory.initElements(driver, this);
     }
 
@@ -72,13 +67,11 @@ public class OnlineReplenishmentPage {
         wait.until(ExpectedConditions.visibilityOf(blockTitle));
     }
 
-    /* --- Методы верхнего уровня (твои рабочие) --- */
 
     public String getBlockTitle() {
         return blockTitle.getText();
     }
 
-    // ✅ Можно оставить твой старый метод
     public void chooseService(String option) {
         new Select(serviceSelector).selectByValue(option);
     }
@@ -105,9 +98,7 @@ public class OnlineReplenishmentPage {
         return infoLink.isDisplayed();
     }
 
-    /* --- Методы для requirement #1 (надписи в пустых полях) --- */
 
-    // ✅ Проверка текущих полей
     public String getPhonePlaceholder() {
         return phoneField.getAttribute("placeholder");
     }
@@ -120,7 +111,6 @@ public class OnlineReplenishmentPage {
         return emailField.getAttribute("placeholder");
     }
 
-    /* --- Методы для requirement #2 (модальное окно) --- */
 
     public void waitForCardPopup(WebDriverWait wait) {
         wait.until(ExpectedConditions.visibilityOf(cardNumberInput));

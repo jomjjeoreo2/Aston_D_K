@@ -22,7 +22,6 @@ public class MTSReplenishTests extends BaseTest {
         page = new OnlineReplenishmentPage(driver, this);
         page.waitUntilBlockIsReady();
     }
-    /* Первая часть (твои рабочие тесты) */
 
     @Test(priority = 1)
     public void checkBlockTitle() {
@@ -39,57 +38,53 @@ public class MTSReplenishTests extends BaseTest {
         Assert.assertTrue(page.isInfoLinkPresent());
     }
 
-    // ✅ Четвертый тест (интеграция в новую структуру)
     @Test(priority = 4)
     public void checkConnectionForm() {
-        // Закрытие куки уже встроено в BaseTest
+
         page.chooseService("Услуги связи");
         page.enterPhone("297777777");
         page.enterAmount("10");
         page.clickSubmit();
     }
 
-    /* Вторая часть задания */
 
-    // Requirement #1: Проверка надписей в незаполненных полях
     @Test(dataProvider = "servicesData", priority = 5)
     public void checkPlaceholdersAndLabelsForAllServices(String serviceName, Map<String, String> expected) {
         page.chooseService(serviceName);
 
-        // Проверяем активные поля
         Assert.assertEquals(page.getPhonePlaceholder(), expected.get("phone"));
         Assert.assertEquals(page.getAmountLabel(), expected.get("sum"));
         Assert.assertEquals(page.getEmailPlaceholder(), expected.get("email"));
     }
 
-    // Requirement #2: Проверка модального окна (услуги связи)
+
     @Test(priority = 6)
     public void checkMobilePaymentDetailsInModal() {
-        // Настройка ожидания
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        // 1. Заполняем форму
+
         page.chooseService("Услуги связи");
         page.enterPhone("297777777");
         page.enterAmount("10");
         page.clickSubmit();
 
-        // 2. Ждем появления модального окна
+
         page.waitForCardPopup(wait);
 
-        // 3. Проверяем сумму на кнопке
+
         Assert.assertTrue(page.getPayButtonText().contains("10"), "Сумма 10 не отображена на кнопке Оплатить");
 
-        // 4. Проверяем плацебохолдеры полей карты
+
         Assert.assertEquals(page.getCardNumberPlaceholder(), "XXXX XXXX XXXX XXXX");
         Assert.assertEquals(page.getExpiryPlaceholder(), "MM / YY");
         Assert.assertEquals(page.getCvcPlaceholder(), "CVC/CID");
 
-        // 5. Проверяем иконки платёжных систем
+
         Assert.assertTrue(page.arePaymentIconsVisible(), "Отсутствуют иконки Visa/Mastercard в окне оплаты");
     }
 
-    /* === DATA PROVIDER === */
+
 
     @DataProvider(name = "servicesData")
     public Object[][] provideServices() {
