@@ -1,20 +1,25 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import config.BaseTest;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.List;
 
 public class OnlineReplenishmentPage {
 
-    private WebDriver driver;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
+
+    /* --- Элементы верхнего уровня (твои рабочие) --- */
 
     @FindBy(css = ".pay__wrapper h2")
     private WebElement blockTitle;
 
-    @FindBy(id = "pay")
+    @FindBy(id = "pay") // Обычный HTML-select
     private WebElement serviceSelector;
 
     @FindBy(css = "[id$=phone]")
@@ -35,15 +40,45 @@ public class OnlineReplenishmentPage {
     @FindBy(className = "pay__partners")
     private WebElement partnersSection;
 
-    public OnlineReplenishmentPage(WebDriver driver) {
+    /* --- Элементы модального окна (добавляю для Req #2) --- */
+
+    // Карточные поля появляются в модальном окне
+    @FindBy(id = "card-number")
+    private WebElement cardNumberInput;
+
+    @FindBy(id = "card-expiry")
+    private WebElement expiryDateInput;
+
+    @FindBy(id = "card-cvc")
+    private WebElement cvcCodeInput;
+
+    // Кнопка «Оплатить» в модальном окне
+    @FindBy(xpath = "//button[text()='Оплатить']")
+    private WebElement payButtonInModal;
+
+    // Иконки платежных систем в модальном окне
+    @FindBy(css = ".payment-system-icons img")
+    private List<WebElement> paymentSystemIcons;
+
+    /* --- Конструктор --- */
+
+    public OnlineReplenishmentPage(WebDriver driver, BaseTest baseTest) {
         this.driver = driver;
+        this.wait = baseTest.getExplicitWait(); // Присваиваем внутри конструктора
         PageFactory.initElements(driver, this);
     }
+
+    public void waitUntilBlockIsReady() {
+        wait.until(ExpectedConditions.visibilityOf(blockTitle));
+    }
+
+    /* --- Методы верхнего уровня (твои рабочие) --- */
 
     public String getBlockTitle() {
         return blockTitle.getText();
     }
 
+    // ✅ Можно оставить твой старый метод
     public void chooseService(String option) {
         new Select(serviceSelector).selectByValue(option);
     }
@@ -70,4 +105,44 @@ public class OnlineReplenishmentPage {
         return infoLink.isDisplayed();
     }
 
+    /* --- Методы для requirement #1 (надписи в пустых полях) --- */
+
+    // ✅ Проверка текущих полей
+    public String getPhonePlaceholder() {
+        return phoneField.getAttribute("placeholder");
+    }
+
+    public String getAmountLabel() {
+        return driver.findElement(By.xpath("//label[contains(@for, '-sum')]")).getText();
+    }
+
+    public String getEmailPlaceholder() {
+        return emailField.getAttribute("placeholder");
+    }
+
+    /* --- Методы для requirement #2 (модальное окно) --- */
+
+    public void waitForCardPopup(WebDriverWait wait) {
+        wait.until(ExpectedConditions.visibilityOf(cardNumberInput));
+    }
+
+    public String getPayButtonText() {
+        return payButtonInModal.getText();
+    }
+
+    public boolean arePaymentIconsVisible() {
+        return paymentSystemIcons.size() >= 4 && paymentSystemIcons.stream().allMatch(WebElement::isDisplayed);
+    }
+
+    public String getCardNumberPlaceholder() {
+        return cardNumberInput.getAttribute("placeholder");
+    }
+
+    public String getExpiryPlaceholder() {
+        return expiryDateInput.getAttribute("placeholder");
+    }
+
+    public String getCvcPlaceholder() {
+        return cvcCodeInput.getAttribute("placeholder");
+    }
 }

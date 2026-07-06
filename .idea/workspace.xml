@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19f30cbc-a69d-4f81-ab39-561c79d2bbe7" name="Changes" comment="тесты апи к Лекции 2.9." />
+    <list default="true" id="19f30cbc-a69d-4f81-ab39-561c79d2bbe7" name="Changes" comment="тесты к Лекции 2.9.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/config/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/config/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/OnlineReplenishmentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/OnlineReplenishmentPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/MTSReplenishTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/MTSReplenishTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Lesson_8" />
+        <entry key="$PROJECT_DIR$" value="Lesson_9" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -78,7 +83,7 @@
     "TestNG.PostRawTextTest.testPostRawText.executor": "Run",
     "TestNG.PutDataTest.executor": "Run",
     "TestNG.ru.example.math.testng.executor": "Run",
-    "git-widget-placeholder": "Lesson__9",
+    "git-widget-placeholder": "Lesson__10",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Katana Kanf/IdeaProjects/Aston_D_K/src/main",
     "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
@@ -282,7 +287,23 @@
       <option name="project" value="LOCAL" />
       <updated>1783259591509</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="тесты к Лекции 2.9.">
+      <option name="closed" value="true" />
+      <created>1783260524401</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1783260524401</updated>
+    </task>
+    <task id="LOCAL-00013" summary="тесты к Лекции 2.9.">
+      <option name="closed" value="true" />
+      <created>1783261242774</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1783261242775</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -297,6 +318,7 @@
     <MESSAGE value="тест и коды к testng" />
     <MESSAGE value="тесты апи к Лекции 2.8." />
     <MESSAGE value="тесты апи к Лекции 2.9." />
-    <option name="LAST_COMMIT_MESSAGE" value="тесты апи к Лекции 2.9." />
+    <MESSAGE value="тесты к Лекции 2.9." />
+    <option name="LAST_COMMIT_MESSAGE" value="тесты к Лекции 2.9." />
   </component>
 </project>
