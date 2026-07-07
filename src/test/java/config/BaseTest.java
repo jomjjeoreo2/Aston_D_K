@@ -15,7 +15,7 @@ import java.time.Duration;
 
 public abstract class BaseTest {
     protected WebDriver driver;
-    protected WebDriverWait explicitWait; // Доступно для всех тестов
+    protected WebDriverWait explicitWait;
 
     @BeforeClass
     public void setup() {
@@ -23,7 +23,7 @@ public abstract class BaseTest {
             WebDriverManager.chromedriver().setup();
 
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless=new"); // Новый флаг для Chromium 10+
+            options.addArguments("--headless=new");
             driver = new ChromeDriver(options);
 
             driver.manage().window().maximize();
@@ -48,18 +48,13 @@ public abstract class BaseTest {
 
 
     protected void closeCookies() {
-        try {
+        By bannerLocator = By.cssSelector(".cookie");
+        WebElement banner = explicitWait.until(ExpectedConditions.visibilityOfElementLocated(bannerLocator));
 
-            By bannerLocator = By.cssSelector(".cookie");
-            WebElement banner = explicitWait.until(ExpectedConditions.visibilityOfElementLocated(bannerLocator));
-
-            By acceptBtnLocator = By.id("cookie-agree");
-            WebElement acceptBtn = banner.findElement(acceptBtnLocator);
-            acceptBtn.click();
-
-            explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(bannerLocator));
-        } catch (TimeoutException ignored) {
-        }
+        By acceptBtnLocator = By.id("cookie-agree");
+        WebElement acceptBtn = banner.findElement(acceptBtnLocator);
+        acceptBtn.click();
+        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(bannerLocator));
     }
 
     public WebDriverWait getExplicitWait() {

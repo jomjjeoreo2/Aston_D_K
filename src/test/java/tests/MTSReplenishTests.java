@@ -18,14 +18,15 @@ public class MTSReplenishTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setupTest() {
-        super.setup(); // Создает драйвер и wait
+        super.setup();
         page = new OnlineReplenishmentPage(driver, this);
         page.waitUntilBlockIsReady();
     }
 
     @Test(priority = 1)
     public void checkBlockTitle() {
-        Assert.assertEquals(page.getBlockTitle(), "Онлайнпополнениебезкомиссии");
+        String title = page.getBlockTitle().replaceAll("\\s+", "");
+        Assert.assertEquals(title, "ОНЛАЙНПОПОЛНЕНИЕБЕЗКОМИССИИ");
     }
 
     @Test(priority = 2)

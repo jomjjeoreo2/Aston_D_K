@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19f30cbc-a69d-4f81-ab39-561c79d2bbe7" name="Changes" comment="тесты к Лекции 2.9.">
+    <list default="true" id="19f30cbc-a69d-4f81-ab39-561c79d2bbe7" name="Changes" comment="тесты к Лекции 2.10">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/config/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/config/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/OnlineReplenishmentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/OnlineReplenishmentPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/MTSReplenishTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/MTSReplenishTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +84,7 @@
     "git-widget-placeholder": "Lesson__10",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Katana Kanf/IdeaProjects/Aston_D_K/src/main",
-    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -303,7 +301,23 @@
       <option name="project" value="LOCAL" />
       <updated>1783261242775</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="тесты к Лекции 2.10">
+      <option name="closed" value="true" />
+      <created>1783368030753</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1783368030756</updated>
+    </task>
+    <task id="LOCAL-00015" summary="тесты к Лекции 2.10">
+      <option name="closed" value="true" />
+      <created>1783368270545</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1783368270547</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -319,6 +333,7 @@
     <MESSAGE value="тесты апи к Лекции 2.8." />
     <MESSAGE value="тесты апи к Лекции 2.9." />
     <MESSAGE value="тесты к Лекции 2.9." />
-    <option name="LAST_COMMIT_MESSAGE" value="тесты к Лекции 2.9." />
+    <MESSAGE value="тесты к Лекции 2.10" />
+    <option name="LAST_COMMIT_MESSAGE" value="тесты к Лекции 2.10" />
   </component>
 </project>
