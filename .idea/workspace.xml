@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="19f30cbc-a69d-4f81-ab39-561c79d2bbe7" name="Changes" comment="тесты к Лекции 2.10">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/config/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/config/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/OnlineReplenishmentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/OnlineReplenishmentPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/MTSReplenishTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/MTSReplenishTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +65,7 @@
     "JUnit.FactorialCalculatorTest.executor": "Run",
     "JUnit.NumberComparerTest.executor": "Run",
     "Maven.Aston_D_K [clean].executor": "Run",
+    "Maven.Aston_D_K [install].executor": "Run",
     "Maven.Aston_D_K [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -70,6 +74,8 @@
     "TestNG.DeleteDataTest.executor": "Run",
     "TestNG.GetRequestWoops.executor": "Run",
     "TestNG.GetRequestWoopsTest.executor": "Run",
+    "TestNG.MTSReplenishTests.checkBlockTitle.executor": "Run",
+    "TestNG.MTSReplenishTests.checkPlaceholdersAndLabelsForAllServices.executor": "Run",
     "TestNG.MTSReplenishTests.executor": "Run",
     "TestNG.PatchDataTest.executor": "Run",
     "TestNG.PostFormDataTest.executor": "Run",
@@ -110,23 +116,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GetRequestWoopsTest" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="Aston_D_K" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.GetRequestWoopsTest" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MTSReplenishTests" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Aston_D_K" />
       <extension name="coverage">
@@ -138,6 +127,42 @@
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.MTSReplenishTests" />
       <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MTSReplenishTests.checkBlockTitle" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Aston_D_K" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.MTSReplenishTests" />
+      <option name="METHOD_NAME" value="checkBlockTitle" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MTSReplenishTests.checkPlaceholdersAndLabelsForAllServices" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Aston_D_K" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.MTSReplenishTests" />
+      <option name="METHOD_NAME" value="checkPlaceholdersAndLabelsForAllServices" />
+      <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
       <method v="2">
@@ -161,30 +186,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PutDataTest" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="Aston_D_K" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.PutDataTest" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="TestNG.MTSReplenishTests" />
+        <item itemvalue="TestNG.MTSReplenishTests.checkPlaceholdersAndLabelsForAllServices" />
+        <item itemvalue="TestNG.MTSReplenishTests.checkBlockTitle" />
         <item itemvalue="TestNG.DeleteDataTest" />
         <item itemvalue="TestNG.PatchDataTest" />
-        <item itemvalue="TestNG.GetRequestWoopsTest" />
-        <item itemvalue="TestNG.PutDataTest" />
       </list>
     </recent_temporary>
   </component>
@@ -317,7 +325,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783368270547</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="тесты к Лекции 2.10">
+      <option name="closed" value="true" />
+      <created>1783434182672</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1783434182672</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

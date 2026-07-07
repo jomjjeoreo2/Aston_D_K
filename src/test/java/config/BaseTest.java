@@ -1,7 +1,5 @@
 package config;
 
-import static org.testng.Assert.fail;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,24 +17,19 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void setup() {
-        try {
-            WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().setup();
 
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless=new");
-            driver = new ChromeDriver(options);
+        ChromeOptions options = new ChromeOptions();
+        // options.addArguments("--headless=new");
 
-            driver.manage().window().maximize();
+        driver = new ChromeDriver(options);
 
+        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(60));
 
-            explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        driver.get("https://mts.by");
+        explicitWait.until(ExpectedConditions.urlContains("mts.by"));
 
-            driver.get("https://mts.by");
-            explicitWait.until(ExpectedConditions.urlContains("mts.by"));
-            closeCookies();
-        } catch (Exception e) {
-            fail("Ошибка при инициализации браузера: " + e.getMessage());
-        }
+        closeCookies();
     }
 
     @AfterClass
@@ -46,15 +39,23 @@ public abstract class BaseTest {
         }
     }
 
-
     protected void closeCookies() {
-        By bannerLocator = By.cssSelector(".cookie");
-        WebElement banner = explicitWait.until(ExpectedConditions.visibilityOfElementLocated(bannerLocator));
+        try {
+            By bannerLocator = By.cssSelector(".cookie.show");
+            WebElement banner = explicitWait.until(ExpectedConditions.visibilityOfElementLocated(bannerLocator));
 
-        By acceptBtnLocator = By.id("cookie-agree");
-        WebElement acceptBtn = banner.findElement(acceptBtnLocator);
-        acceptBtn.click();
-        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(bannerLocator));
+            By acceptBtnLocator = By.cssSelector(".cookie__ok[id=cookie-agree]");
+            WebElement acceptBtn = banner.findElement(acceptBtnLocator);
+            acceptBtn.click();
+
+            explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(bannerLocator));
+        } catch (TimeoutException e) {
+            System.out.println("Cookie-баннер не найден или уже закрыт — продолжаем тест.");
+        } catch (NoSuchElementException e) {
+            System.out.println("Cookie-баннер не найден (NoSuchElement) — продолжаем тест.");
+        } catch (Exception e) {
+            System.err.println("Неожиданная ошибка при закрытии cookie-баннера: " + e.getMessage());
+        }
     }
 
     public WebDriverWait getExplicitWait() {
