@@ -1,6 +1,5 @@
 package pages;
 
-import config.BaseTest;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -57,24 +56,12 @@ public class OnlineReplenishmentPage {
     @FindBy(className = "pay__partners")
     private WebElement partnersSection;
 
-    @FindBy(css = "input[formcontrolname='creditCard']")
-    private WebElement cardNumberInput;
-
-    @FindBy(css = "input[formcontrolname='expirationDate']")
-    private WebElement expiryDateInput;
-
-    @FindBy(css = "input[formcontrolname='cvc']")
-    private WebElement cvcCodeInput;
-
-    @FindBy(xpath = "//button[text()='Оплатить']")
-    private WebElement payButtonInModal;
-
     @FindBy(css = ".cards-brands img")
     private List<WebElement> paymentSystemIcons;
 
-    public OnlineReplenishmentPage(WebDriver driver, BaseTest baseTest) {
+    public OnlineReplenishmentPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = baseTest.getExplicitWait();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         PageFactory.initElements(driver, this);
     }
 
@@ -102,8 +89,6 @@ public class OnlineReplenishmentPage {
     }
 
     public void chooseService(String option) {
-        ensureCookiesAreAccepted();
-
         By headerLocator = By.cssSelector(".select__header");
         WebElement header = wait.until(ExpectedConditions.elementToBeClickable(headerLocator));
         scrollIntoView(header);
@@ -155,17 +140,75 @@ public class OnlineReplenishmentPage {
         return emailField.getAttribute("placeholder");
     }
 
+
+    public void switchToPaymentIframe() {
+        By iframeLocator = By.cssSelector("iframe[src*='checkout.bepaid.by']");
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframeLocator));
+    }
+
+
+    public void switchBackToMainContent() {
+        driver.switchTo().defaultContent();
+    }
+
+
     public void waitForCardPopup() {
-        wait.until(ExpectedConditions.visibilityOf(cardNumberInput));
+        switchToPaymentIframe();
+
+        // Ждём именно ID, который реально есть в HTML
+        By cardInput = By.id("cc-number");
+        wait.until(ExpectedConditions.elementToBeClickable(cardInput));
     }
 
     public void waitForCardPopup(Duration customTimeout) {
         WebDriverWait customWait = new WebDriverWait(driver, customTimeout);
-        customWait.until(ExpectedConditions.visibilityOf(cardNumberInput));
+        switchToPaymentIframe();
+        By cardInput = By.id("cc-number");
+        customWait.until(ExpectedConditions.elementToBeClickable(cardInput));
+    }
+
+
+    public void enterCardNumber(String cardNumber) {
+        By cardInput = By.id("cc-number");
+        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(cardInput));
+        input.clear();
+        input.sendKeys(cardNumber);
+    }
+
+    public void enterExpirationDate(String expiry) {
+        By expInput = By.cssSelector("input[formcontrolname='expirationDate']");
+        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(expInput));
+        input.clear();
+        input.sendKeys(expiry);
+    }
+
+
+    public void enterCvc(String cvc) {
+        By cvcInput = By.cssSelector("input[formcontrolname='cvc']");
+        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(cvcInput));
+        input.clear();
+        input.sendKeys(cvc);
+    }
+
+
+    public void enterHolderName(String name) {
+        By holderInput = By.cssSelector("input[formcontrolname='holder']");
+        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(holderInput));
+        input.clear();
+        input.sendKeys(name);
+    }
+
+    public void clickConfirmPaymentInIframe() {
+
+        By payBtn = By.xpath(".//button[normalize-space()='Оплатить'] | .//span[normalize-space()='Оплатить']");
+        WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(payBtn));
+        clickWithJs(btn);
     }
 
     public String getPayButtonText() {
-        return payButtonInModal.getText().trim();
+        By payBtn = By.xpath(".//button[normalize-space()='Оплатить'] | .//span[normalize-space()='Оплатить']");
+        WebElement btn = wait.until(ExpectedConditions.visibilityOfElementLocated(payBtn));
+        return btn.getText().trim();
     }
 
     public String getOrderPhoneText() {
@@ -188,33 +231,42 @@ public class OnlineReplenishmentPage {
         return true;
     }
 
-    // оставлю для совместимости, но в дом лейблы
+
     public String getCardNumberPlaceholder() {
-        return cardNumberInput.getAttribute("placeholder");
+        switchToPaymentIframe();
+        By input = By.id("cc-number");
+        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(input));
+        return el.getAttribute("placeholder");
     }
 
     public String getExpiryPlaceholder() {
-        return expiryDateInput.getAttribute("placeholder");
+        switchToPaymentIframe();
+        By input = By.cssSelector("input[formcontrolname='expirationDate']");
+        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(input));
+        return el.getAttribute("placeholder");
     }
 
     public String getCvcPlaceholder() {
-        return cvcCodeInput.getAttribute("placeholder");
+        switchToPaymentIframe();
+        By input = By.cssSelector("input[formcontrolname='cvc']");
+        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(input));
+        return el.getAttribute("placeholder");
     }
 
     public String getCardNumberLabel() {
-        // input[formcontrolname='creditCard'] + label
-        WebElement label = driver.findElement(By.cssSelector("input[formcontrolname='creditCard'] + label"));
+        switchToPaymentIframe();
+        WebElement label = driver.findElement(By.cssSelector("input[id='cc-number'] + label"));
         return label.getText().trim();
     }
 
     public String getExpiryLabel() {
-        // input[formcontrolname='expirationDate'] + label
+        switchToPaymentIframe();
         WebElement label = driver.findElement(By.cssSelector("input[formcontrolname='expirationDate'] + label"));
         return label.getText().trim();
     }
 
     public String getCvcLabel() {
-        // input[formcontrolname='cvc'] + label
+        switchToPaymentIframe();
         WebElement label = driver.findElement(By.cssSelector("input[formcontrolname='cvc'] + label"));
         return label.getText().trim();
     }
@@ -237,30 +289,6 @@ public class OnlineReplenishmentPage {
                 By.cssSelector(".pay-description__cost span")
         ));
         return el.getText().trim();
-    }
-
-
-    private void ensureCookiesAreAccepted() {
-        By bannerLocator = By.cssSelector(".cookie__wrapper");
-        List<WebElement> banners = driver.findElements(bannerLocator);
-        if (banners.isEmpty()) {
-            return;
-        }
-
-        try {
-            By acceptBtnLocator = By.id("cookie-agree");
-            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement btn = shortWait.until(ExpectedConditions.elementToBeClickable(acceptBtnLocator));
-
-            scrollIntoView(btn);
-            Thread.sleep(200);
-            btn.click();
-
-            shortWait.until(ExpectedConditions.invisibilityOfElementLocated(bannerLocator));
-            System.out.println("[COOKIES] Баннер успешно закрыт.");
-        } catch (Exception e) {
-            System.out.println("[COOKIES] Не удалось закрыть баннер (возможно, его нет или структура изменилась): " + e.getMessage());
-        }
     }
 
     private String getCurrentService() {

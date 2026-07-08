@@ -25,8 +25,7 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-// options.addArguments("--headless=new");
-
+        // options.addArguments("--headless=new"); // раскомментируй, если нужен headless
         options.addArguments("--log-level=3");
 
         driver = new ChromeDriver(options);
@@ -45,33 +44,32 @@ public class BaseTest {
     }
 
     protected void acceptMtsCookies(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         By bannerLocator = By.cssSelector(".cookie__wrapper");
 
-        try {
-            if (driver.findElements(bannerLocator).isEmpty()) {
-                System.out.println("[COOKIES] Баннер не обнаружен — пропускаем.");
-                return;
-            }
+        if (driver.findElements(bannerLocator).isEmpty()) {
+            System.out.println("[COOKIES] Баннер не обнаружен — пропускаем.");
+            return;
+        }
 
-            By acceptButtonLocator = By.id("cookie-agree");
-            WebElement acceptBtn = wait.until(ExpectedConditions.elementToBeClickable(acceptButtonLocator));
+        By acceptButtonLocator = By.id("cookie-agree");
+
+        try {
+            WebElement acceptBtn = explicitWait.until(
+                    ExpectedConditions.elementToBeClickable(acceptButtonLocator)
+            );
 
             ((JavascriptExecutor) driver).executeScript(
                     "arguments[0].scrollIntoView({block: 'center'});", acceptBtn
             );
 
-            Thread.sleep(300); // небольшая пауза, чтобы UI успел отрисоваться
+            explicitWait.until(ExpectedConditions.visibilityOf(acceptBtn));
             acceptBtn.click();
 
             System.out.println("[COOKIES] Нажали «Принять». Ждём исчезновения баннера");
-
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(bannerLocator));
+            explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(bannerLocator));
             System.out.println("[COOKIES] Баннер закрыт");
-
         } catch (Exception e) {
             System.out.println("[COOKIES] Не удалось закрыть баннер: " + e.getMessage());
         }
     }
-
 }

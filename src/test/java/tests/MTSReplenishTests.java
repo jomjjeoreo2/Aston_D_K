@@ -29,14 +29,19 @@ public class MTSReplenishTests extends BaseTest {
 
     @BeforeMethod
     public void initPage() {
-        page = new OnlineReplenishmentPage(driver, this);
-        page.waitUntilBlockIsReady();
+        System.out.println("=== Инициализируем страницу ===");
+        if (driver == null) {
+            System.out.println("ОШИБКА: driver == null!");
+            throw new IllegalStateException("driver не инициализирован в BaseTest.setup()");
+        } else {
+            this.page = new OnlineReplenishmentPage(driver);
+            System.out.println("Страница успешно создана: " + this.page);
+        }
     }
 
     @Test(priority = 1)
     @Severity(SeverityLevel.CRITICAL)
     public void checkBlockTitle() {
-
         String title = page.getBlockTitle().replaceAll("\\s+", "");
         Assert.assertEquals(title, "ОНЛАЙНПОПОЛНЕНИЕБЕЗКОМИССИИ",
                 "Заголовок блока не совпадает с ожидаемым. Получено: '" + title + "'");
@@ -92,15 +97,18 @@ public class MTSReplenishTests extends BaseTest {
             String expectedValue = expected.get(field);
             Assert.assertEquals(actualValue, expectedValue,
                     "Для услуги '" + serviceName + "' поле '" + field + "' не совпадает.\n" +
-                            "Ожидали: '" + expectedValue + "'\n" +
-                            "Получили: '" + actualValue + "'");
+                            "Ожидалось: '" + expectedValue + "'\n" +
+                            "Получено: '" + actualValue + "'");
         }
     }
 
     @Test(priority = 6)
     @Severity(SeverityLevel.CRITICAL)
     public void checkMobilePaymentDetailsInModal() {
+
         performConnectionFormSteps();
+
+
         page.waitForCardPopup();
 
         String orderAmount = page.getOrderAmount();
@@ -128,8 +136,17 @@ public class MTSReplenishTests extends BaseTest {
 
         Assert.assertTrue(page.arePaymentIconsVisible(),
                 "Отсутствуют иконки платёжных систем в окне оплаты");
-    }
 
+        page.enterCardNumber("4111111111111111");
+        page.enterExpirationDate("12/25");
+        page.enterCvc("123");
+        page.enterHolderName("IVAN IVANOV");
+
+        page.clickConfirmPaymentInIframe();
+        page.switchBackToMainContent();
+
+        System.out.println("Контекст возвращён в основной документ");
+    }
 
     @DataProvider(name = "servicesData")
     public Object[][] provideServices() {
@@ -140,7 +157,6 @@ public class MTSReplenishTests extends BaseTest {
                 {"Задолженность", createLabels("", "Номер счета на 2073", "Руб.", "E-mail для отправки чека")}
         };
     }
-
 
     private Map<String, String> createLabels(String phone, String account, String sum, String email) {
         Map<String, String> map = new HashMap<>();
