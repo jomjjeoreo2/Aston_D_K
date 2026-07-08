@@ -1,10 +1,7 @@
 package pages;
 
 import config.BaseTest;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -60,25 +57,24 @@ public class OnlineReplenishmentPage {
     @FindBy(className = "pay__partners")
     private WebElement partnersSection;
 
-    @FindBy(css = "#card-number")
+    @FindBy(css = "input[formcontrolname='creditCard']")
     private WebElement cardNumberInput;
 
-    @FindBy(css = "#card-expiry")
+    @FindBy(css = "input[formcontrolname='expirationDate']")
     private WebElement expiryDateInput;
 
-    @FindBy(css = "#card-cvc")
+    @FindBy(css = "input[formcontrolname='cvc']")
     private WebElement cvcCodeInput;
 
     @FindBy(xpath = "//button[text()='Оплатить']")
     private WebElement payButtonInModal;
 
-    @FindBy(css = ".payment-system-icons img")
+    @FindBy(css = ".cards-brands img")
     private List<WebElement> paymentSystemIcons;
 
     public OnlineReplenishmentPage(WebDriver driver, BaseTest baseTest) {
         this.driver = driver;
-
-        this.wait = baseTest.getExplicitWait() != null ? baseTest.getExplicitWait() : new WebDriverWait(driver, Duration.ofSeconds(60));
+        this.wait = baseTest.getExplicitWait();
         PageFactory.initElements(driver, this);
     }
 
@@ -86,18 +82,14 @@ public class OnlineReplenishmentPage {
         wait.until(ExpectedConditions.visibilityOf(blockTitle));
     }
 
-
     public void waitForCurrencyText(String expectedText) {
-
         By locator = By.cssSelector("label[for*='sum']");
-
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, expectedText));
+        WebElement label = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        wait.until(d -> label.getText().contains(expectedText));
     }
 
     public String getAmountLabel() {
-
         waitForCurrencyText("Руб.");
-
         List<WebElement> labels = driver.findElements(By.cssSelector("label[for*='sum']"));
         if (labels.isEmpty()) {
             throw new NoSuchElementException("Не найден label для поля суммы после ожидания");
@@ -110,29 +102,23 @@ public class OnlineReplenishmentPage {
     }
 
     public void chooseService(String option) {
+        ensureCookiesAreAccepted();
+
         By headerLocator = By.cssSelector(".select__header");
-        wait.until(ExpectedConditions.elementToBeClickable(headerLocator)).click();
+        WebElement header = wait.until(ExpectedConditions.elementToBeClickable(headerLocator));
+        scrollIntoView(header);
+        clickWithJs(header);
 
         String escapedOption = option.replace("'", "\\'");
-        By optionLocator = By.xpath("//p[normalize-space(.)='" + escapedOption + "']");
+        By optionLocator = By.xpath("//p[normalize-space() = '" + escapedOption + "']");
 
         WebElement optionElement = wait.until(ExpectedConditions.elementToBeClickable(optionLocator));
-        optionElement.click();
-
-        By activeLocator = By.xpath("//li[contains(@class, 'select__item active')]//p[normalize-space(.)='" + escapedOption + "']");
-        wait.until(ExpectedConditions.presenceOfElementLocated(activeLocator));
+        scrollIntoView(optionElement);
+        clickWithJs(optionElement);
 
         String containerId = getContainerIdByOption(option);
         By containerLocator = By.id(containerId);
-
-        wait.until(drv -> {
-            try {
-                WebElement container = drv.findElement(containerLocator);
-                return container.isDisplayed();
-            } catch (Exception e) {
-                return false;
-            }
-        });
+        wait.until(ExpectedConditions.visibilityOfElementLocated(containerLocator));
 
         waitForCurrencyText("Руб.");
     }
@@ -148,7 +134,8 @@ public class OnlineReplenishmentPage {
     }
 
     public void clickSubmit() {
-        submitBtn.click();
+        scrollIntoView(submitBtn);
+        clickWithJs(submitBtn);
     }
 
     public boolean hasPartnersLogos() {
@@ -168,19 +155,32 @@ public class OnlineReplenishmentPage {
         return emailField.getAttribute("placeholder");
     }
 
-    public void waitForCardPopup(WebDriverWait wait) {
+    public void waitForCardPopup() {
         wait.until(ExpectedConditions.visibilityOf(cardNumberInput));
     }
 
+    public void waitForCardPopup(Duration customTimeout) {
+        WebDriverWait customWait = new WebDriverWait(driver, customTimeout);
+        customWait.until(ExpectedConditions.visibilityOf(cardNumberInput));
+    }
+
     public String getPayButtonText() {
-        return payButtonInModal.getText();
+        return payButtonInModal.getText().trim();
+    }
+
+    public String getOrderPhoneText() {
+        WebElement textEl = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".pay-description__text"))
+        );
+        return textEl.getText().trim();
     }
 
     public boolean arePaymentIconsVisible() {
-        if (paymentSystemIcons.size() < 4) {
+        List<WebElement> icons = driver.findElements(By.cssSelector(".cards-brands img"));
+        if (icons.isEmpty()) {
             return false;
         }
-        for (WebElement icon : paymentSystemIcons) {
+        for (WebElement icon : icons) {
             if (!icon.isDisplayed()) {
                 return false;
             }
@@ -188,6 +188,7 @@ public class OnlineReplenishmentPage {
         return true;
     }
 
+    // оставлю для совместимости, но в дом лейблы
     public String getCardNumberPlaceholder() {
         return cardNumberInput.getAttribute("placeholder");
     }
@@ -198,6 +199,24 @@ public class OnlineReplenishmentPage {
 
     public String getCvcPlaceholder() {
         return cvcCodeInput.getAttribute("placeholder");
+    }
+
+    public String getCardNumberLabel() {
+        // input[formcontrolname='creditCard'] + label
+        WebElement label = driver.findElement(By.cssSelector("input[formcontrolname='creditCard'] + label"));
+        return label.getText().trim();
+    }
+
+    public String getExpiryLabel() {
+        // input[formcontrolname='expirationDate'] + label
+        WebElement label = driver.findElement(By.cssSelector("input[formcontrolname='expirationDate'] + label"));
+        return label.getText().trim();
+    }
+
+    public String getCvcLabel() {
+        // input[formcontrolname='cvc'] + label
+        WebElement label = driver.findElement(By.cssSelector("input[formcontrolname='cvc'] + label"));
+        return label.getText().trim();
     }
 
     public String getAccountPlaceholder() {
@@ -211,6 +230,37 @@ public class OnlineReplenishmentPage {
         By locator = By.id(fieldId);
         WebElement scoreField = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         return scoreField.getAttribute("placeholder");
+    }
+
+    public String getOrderAmount() {
+        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.cssSelector(".pay-description__cost span")
+        ));
+        return el.getText().trim();
+    }
+
+
+    private void ensureCookiesAreAccepted() {
+        By bannerLocator = By.cssSelector(".cookie__wrapper");
+        List<WebElement> banners = driver.findElements(bannerLocator);
+        if (banners.isEmpty()) {
+            return;
+        }
+
+        try {
+            By acceptBtnLocator = By.id("cookie-agree");
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement btn = shortWait.until(ExpectedConditions.elementToBeClickable(acceptBtnLocator));
+
+            scrollIntoView(btn);
+            Thread.sleep(200);
+            btn.click();
+
+            shortWait.until(ExpectedConditions.invisibilityOfElementLocated(bannerLocator));
+            System.out.println("[COOKIES] Баннер успешно закрыт.");
+        } catch (Exception e) {
+            System.out.println("[COOKIES] Не удалось закрыть баннер (возможно, его нет или структура изменилась): " + e.getMessage());
+        }
     }
 
     private String getCurrentService() {
@@ -231,5 +281,15 @@ public class OnlineReplenishmentPage {
         } else {
             throw new IllegalArgumentException("Неизвестная услуга: " + option);
         }
+    }
+
+    private void scrollIntoView(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+    }
+
+    private void clickWithJs(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", element);
     }
 }

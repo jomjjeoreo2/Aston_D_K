@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19f30cbc-a69d-4f81-ab39-561c79d2bbe7" name="Changes" comment="тесты к Лекции 2.10">
+      <change afterPath="$PROJECT_DIR$/src/test/java/resourses/allure.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/config/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/config/BaseTest.java" afterDir="false" />
@@ -66,7 +68,10 @@
     "JUnit.NumberComparerTest.executor": "Run",
     "Maven.Aston_D_K [clean].executor": "Run",
     "Maven.Aston_D_K [install].executor": "Run",
+    "Maven.Aston_D_K [io.qameta.allure:allure-maven:2.12.0:report].executor": "Run",
     "Maven.Aston_D_K [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.Aston_D_K [test].executor": "Run",
+    "Maven.Aston_D_K [verify].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -189,8 +194,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="TestNG.MTSReplenishTests" />
-        <item itemvalue="TestNG.MTSReplenishTests.checkPlaceholdersAndLabelsForAllServices" />
         <item itemvalue="TestNG.MTSReplenishTests.checkBlockTitle" />
+        <item itemvalue="TestNG.MTSReplenishTests.checkPlaceholdersAndLabelsForAllServices" />
         <item itemvalue="TestNG.DeleteDataTest" />
         <item itemvalue="TestNG.PatchDataTest" />
       </list>
@@ -333,7 +338,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783434182672</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="тесты к Лекции 2.10">
+      <option name="closed" value="true" />
+      <created>1783455286978</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1783455286978</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

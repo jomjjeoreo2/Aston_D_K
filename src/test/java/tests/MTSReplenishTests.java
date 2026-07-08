@@ -1,59 +1,67 @@
 package tests;
 
 import config.BaseTest;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.Step;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.OnlineReplenishmentPage;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static pages.OnlineReplenishmentPage.FIELDS_PER_SERVICE;
 
+@Epic("Онлайн-пополнение")
+@Feature("Страница онлайн-пополнения")
+@Story("Проверка элементов страницы и форм")
 public class MTSReplenishTests extends BaseTest {
 
     private OnlineReplenishmentPage page;
 
-    private WebDriverWait wait;
-
-    @BeforeMethod(alwaysRun = true)
-    public void setupTest() {
-        super.setup();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+    @BeforeMethod
+    public void initPage() {
         page = new OnlineReplenishmentPage(driver, this);
         page.waitUntilBlockIsReady();
     }
 
     @Test(priority = 1)
+    @Severity(SeverityLevel.CRITICAL)
     public void checkBlockTitle() {
+
         String title = page.getBlockTitle().replaceAll("\\s+", "");
-        Assert.assertEquals(title, "ОНЛАЙНПОПОЛНЕНИЕБЕЗКОМИССИИ");
+        Assert.assertEquals(title, "ОНЛАЙНПОПОЛНЕНИЕБЕЗКОМИССИИ",
+                "Заголовок блока не совпадает с ожидаемым. Получено: '" + title + "'");
     }
 
     @Test(priority = 2)
+    @Severity(SeverityLevel.NORMAL)
     public void checkPaymentLogos() {
         Assert.assertTrue(page.hasPartnersLogos(), "Нет логотипов платёжных систем");
     }
 
     @Test(priority = 3)
+    @Severity(SeverityLevel.NORMAL)
     public void checkMoreInfoLink() {
         Assert.assertTrue(page.isInfoLinkPresent(), "Ссылка «Подробнее о сервисе» не найдена");
     }
 
     @Test(priority = 4)
+    @Severity(SeverityLevel.CRITICAL)
     public void checkConnectionForm() {
-        page.chooseService("Услуги связи");
-        page.enterPhone("297777777");
-        page.enterAmount("10");
-        page.clickSubmit();
+        performConnectionFormSteps();
     }
 
     @Test(dataProvider = "servicesData", priority = 5)
+    @Severity(SeverityLevel.NORMAL)
     public void checkPlaceholdersAndLabelsForAllServices(String serviceName, Map<String, String> expected) {
         page.chooseService(serviceName);
 
@@ -84,44 +92,55 @@ public class MTSReplenishTests extends BaseTest {
             String expectedValue = expected.get(field);
             Assert.assertEquals(actualValue, expectedValue,
                     "Для услуги '" + serviceName + "' поле '" + field + "' не совпадает.\n" +
-                            "Ожидалось: '" + expectedValue + "'\n" +
-                            "Получено: '" + actualValue + "'");
+                            "Ожидали: '" + expectedValue + "'\n" +
+                            "Получили: '" + actualValue + "'");
         }
     }
 
     @Test(priority = 6)
+    @Severity(SeverityLevel.CRITICAL)
     public void checkMobilePaymentDetailsInModal() {
-        page.chooseService("Услуги связи");
-        page.enterPhone("297777777");
-        page.enterAmount("10");
-        page.clickSubmit();
+        performConnectionFormSteps();
+        page.waitForCardPopup();
 
-        page.waitForCardPopup(wait);
+        String orderAmount = page.getOrderAmount();
+        Assert.assertTrue(orderAmount.contains("BYN"),
+                "В описании заказа не найдена валюта BYN. Получено: '" + orderAmount + "'");
+
+        String orderPhoneText = page.getOrderPhoneText();
+        Assert.assertTrue(
+                orderPhoneText.contains("375297777777") || orderPhoneText.contains("297777777"),
+                "В описании заказа не найден ожидаемый номер телефона. Получено: '" + orderPhoneText + "'"
+        );
 
         String payButtonText = page.getPayButtonText();
-        boolean sumOrPayPresent = payButtonText.contains("10") || payButtonText.contains("Оплатить");
-        Assert.assertTrue(sumOrPayPresent,
-                "На кнопке оплаты не отображается сумма или текст «Оплатить». Получено: '" + payButtonText + "'");
+        Assert.assertTrue(payButtonText.contains("Оплатить"),
+                "На кнопке оплаты отсутствует текст «Оплатить». Получено: '" + payButtonText + "'");
+        Assert.assertTrue(payButtonText.contains("BYN"),
+                "На кнопке оплаты не указана валюта BYN. Получено: '" + payButtonText + "'");
 
-        Assert.assertEquals(page.getCardNumberPlaceholder(), "XXXX XXXX XXXX XXXX",
-                "Неверный placeholder для номера карты");
-        Assert.assertEquals(page.getExpiryPlaceholder(), "MM / YY",
-                "Неверный placeholder для срока действия");
-        Assert.assertEquals(page.getCvcPlaceholder(), "CVC/CID",
-                "Неверный placeholder для CVC");
+        Assert.assertEquals(page.getCardNumberLabel(), "Номер карты",
+                "Неверная подпись для номера карты");
+        Assert.assertEquals(page.getExpiryLabel(), "Срок действия",
+                "Неверная подпись для срока действия");
+        Assert.assertEquals(page.getCvcLabel(), "CVC",
+                "Неверная подпись для CVC");
 
-        Assert.assertTrue(page.arePaymentIconsVisible(), "Отсутствуют иконки платёжных систем в окне оплаты");
+        Assert.assertTrue(page.arePaymentIconsVisible(),
+                "Отсутствуют иконки платёжных систем в окне оплаты");
     }
+
 
     @DataProvider(name = "servicesData")
     public Object[][] provideServices() {
         return new Object[][]{
                 {"Услуги связи", createLabels("Номер телефона", "", "Руб.", "E-mail для отправки чека")},
-                {"Домашний интернет", createLabels("Номер телефона", "", "Руб.", "E-mail для отправки чека")},
-                {"Рассрочка", createLabels("", "Номер счёта на 44", "Руб.", "E-mail для отправки чека")},
-                {"Задолженность", createLabels("", "Номер счёта на 2073", "Руб.", "E-mail для отправки чека")}
+                {"Домашний интернет", createLabels("Номер абонента", "", "Руб.", "E-mail для отправки чека")},
+                {"Рассрочка", createLabels("", "Номер счета на 44", "Руб.", "E-mail для отправки чека")},
+                {"Задолженность", createLabels("", "Номер счета на 2073", "Руб.", "E-mail для отправки чека")}
         };
     }
+
 
     private Map<String, String> createLabels(String phone, String account, String sum, String email) {
         Map<String, String> map = new HashMap<>();
@@ -130,5 +149,13 @@ public class MTSReplenishTests extends BaseTest {
         map.put("sum", sum);
         map.put("email", email);
         return map;
+    }
+
+    @Step("Заполнение формы пополнения: выбор услуги, ввод телефона и суммы, отправка")
+    private void performConnectionFormSteps() {
+        page.chooseService("Услуги связи");
+        page.enterPhone("297777777");
+        page.enterAmount("10");
+        page.clickSubmit();
     }
 }
